@@ -2,16 +2,20 @@ name: Update README with GitHub Stats
 
 on:
   schedule:
-    - cron: "0 3 * * *" # roda todos os dias às 03:00 UTC
-  workflow_dispatch: # permite rodar manualmente
+    - cron: "0 3 * * *"
+  workflow_dispatch:
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -23,18 +27,33 @@ jobs:
 
       - name: Generate stats
         env:
-          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-        run: |
-          python scripts/stats.py > stats.md
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }} # PAT com limites maiores
+        run: python scripts/stats.py > stats.md
 
       - name: Update README
         run: |
-          sed -i '/<!--START_SECTION:stats-->/,/<!--END_SECTION:stats-->/c\<!--START_SECTION:stats-->\n'$(cat stats.md)'\n<!--END_SECTION:stats-->' README.md
+          # Cria backup do README original
+          cp README.md README.backup
 
-      - name: Commit changes
+          # Insere as stats entre os marcadores
+          awk '
+          BEGIN {p=1} 
+          /<!--START_SECTION:stats-->/ {print; system("cat stats.md"); p=0; next} 
+          /<!--END_SECTION:stats-->/ {p=1} 
+          p==1 {print}' README.backup > README.md
+
+          # Remove o backup
+          rm README.backup
+
+      - name: Commit and push
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
-          git commit -m "Update stats [skip ci]" || echo "No changes"
-          git push
+          # Verifica se há mudanças antes de commitar
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "📊 Update stats [skip ci]"
+            git push
+          fi

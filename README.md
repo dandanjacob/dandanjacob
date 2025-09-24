@@ -10,10 +10,6 @@
   🌱 Explorando Deep Learning, Visão Computacional e MLOps
 </p>
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=dandanjacob&show_icons=true&theme=tokyonight)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=dandanjacob&layout=compact&theme=tokyonight)
-![Streak](https://streak-stats.demolab.com?user=dandanjacob&theme=tokyonight)
-
 <p align="center">
   <a href="https://www.linkedin.com/in/danieljacobtonn/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white" /></a>
   <a href="mailto:danieljt.djt@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white" /></a>
