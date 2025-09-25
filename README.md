@@ -17,6 +17,15 @@
 </p>
 
 <!--START_SECTION:stats-->
+
+### 📊 Minhas estatísticas no GitHub
+
+- 🔥 Total de commits: **159**
+- 🚀 Pull Requests abertos: **0**
+- 📦 Repositórios contribuídos: **20**
+- ➕ Linhas adicionadas: **58730**
+- ➖ Linhas removidas: **46326**
+
 <!--END_SECTION:stats-->
 
 <p align="center">
