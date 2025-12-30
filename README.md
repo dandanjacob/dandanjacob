@@ -20,11 +20,11 @@
 
 ### 📊 Minhas estatísticas no GitHub
 
-- 🔥 Total de commits: **148**
+- 🔥 Total de commits: **160**
 - 🚀 Pull Requests abertos: **0**
 - 📦 Repositórios contribuídos: **21**
-- ➕ Linhas adicionadas: **26617**
-- ➖ Linhas removidas: **4868**
+- ➕ Linhas adicionadas: **58732**
+- ➖ Linhas removidas: **46326**
 
 <!--END_SECTION:stats-->
 
